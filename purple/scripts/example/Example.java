@@ -34,6 +34,7 @@ public class Example extends AbstractScript {
 
     @Override
     public boolean onStart() {
+        getTaskContainer().submit(new Type());
         return true;
     }
 
