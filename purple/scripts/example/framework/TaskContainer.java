@@ -16,7 +16,6 @@ public class TaskContainer implements Comparator<AbstractTask> {
 
     private List<AbstractTask> taskList = new ArrayList<AbstractTask>();
 
-
     public void submit(final AbstractTask... tasks) {
         for (AbstractTask abstractTask : tasks) {
             if (!taskList.contains(abstractTask)) {
@@ -26,9 +25,9 @@ public class TaskContainer implements Comparator<AbstractTask> {
         Collections.sort(taskList, this);
     }
 
-    public void remove(Class<AbstractTask> w) {
-        if (taskList.contains(w)) {
-            taskList.remove(w);
+    public void remove(Class<AbstractTask> abstractTask) {
+        if (taskList.contains(abstractTask)) {
+            taskList.remove(abstractTask);
         }
     }
 
@@ -46,12 +45,15 @@ public class TaskContainer implements Comparator<AbstractTask> {
     }
 
     public AbstractTask getValidTask() {
-        for (AbstractTask task : taskList) {
-            if (task.validate()) {
-                return task;
+        for (AbstractTask abstractTask : taskList) {
+            if (abstractTask.validate()) {
+                return abstractTask;
             }
         }
         return null;
     }
+    
+}
+
 
 }
