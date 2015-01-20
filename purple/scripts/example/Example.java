@@ -3,6 +3,7 @@ package purple.scripts.example;
 import org.tbot.internal.AbstractScript;
 import org.tbot.internal.Manifest;
 import org.tbot.internal.ScriptCategory;
+import org.tbot.methods.walking.Walking;
 import purple.scripts.example.framework.Task;
 import purple.scripts.example.framework.TaskContainer;
 import purple.scripts.example.tasks.Type;
@@ -33,7 +34,6 @@ public class Example extends AbstractScript {
 
     @Override
     public boolean onStart() {
-        getTaskContainer().submit(new Type());
         return true;
     }
 

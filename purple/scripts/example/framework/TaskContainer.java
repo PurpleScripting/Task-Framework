@@ -12,20 +12,21 @@ import java.util.List;
  * Time: 1:27 AM
  * To change this template use File | Settings | File Templates.
  */
-public class TaskContainer implements Comparator<Task> {
+public class TaskContainer implements Comparator<AbstractTask> {
 
-    private List<Task> taskList = new ArrayList<Task>();
+    private List<AbstractTask> taskList = new ArrayList<AbstractTask>();
 
-    public void submit(final Task... tasks) {
-        for (Task w : tasks) {
-            if (!taskList.contains(w)) {
-                taskList.add(w);
+
+    public void submit(final AbstractTask... tasks) {
+        for (AbstractTask abstractTask : tasks) {
+            if (!taskList.contains(abstractTask)) {
+                taskList.add(abstractTask);
             }
         }
         Collections.sort(taskList, this);
     }
 
-    public void remove(Task w) {
+    public void remove(Class<AbstractTask> w) {
         if (taskList.contains(w)) {
             taskList.remove(w);
         }
@@ -40,16 +41,14 @@ public class TaskContainer implements Comparator<Task> {
     }
 
     @Override
-    public int compare(Task o1, Task o2) {
+    public int compare(AbstractTask o1, AbstractTask o2) {
         return o2.priority() - o1.priority();
     }
 
-    public Task getValidTask() {
-        if(taskList.size() > 0) {
-            for (Task w : taskList) {
-                if (w.validate()) {
-                    return w;
-                }
+    public AbstractTask getValidTask() {
+        for (AbstractTask task : taskList) {
+            if (task.validate()) {
+                return task;
             }
         }
         return null;
